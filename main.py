@@ -1,65 +1,45 @@
 import nltk
-import numpy as np
-import tflearn
-import tensorflow
-import random
-import json
-
-from nltk.stem.lancaste import LancasteStemmer
-
-stemmer = LancasteStemmer()
-
-with open('intents.json') as file:
-    data = json.load(file)
-
-words = []
-labels = []
-docs_x = []
-docs_y = []
-
-for intent in data['intents']:
-    for pattern in intent['patterns']:
-        wrds = nltk.word_tokenize(pattern)
-        words.extend(wrds)
-        docs_x.append(wrds)
-        docs_y.append(intent['tag'])
-
-    if intent['tag'] not in labels:
-        labels.append(intent['tag'])
-
-words=[stemmer.stem(w.lower()) for w in words if w !='?']
-words=sorted(list(set(words)))
-
-labels=sorted(labels)
-training =[]
-output=[]
-out_empty = [0 for _ in range(len(labels))]
-
-for x, doc in enumerate(docs_x):
-    bag = []
-
-    wrds=[stemmer.stem(w) for w in doc]
-    for w in words:
-        if w in wrds:
-            bag.append(1)
-        else:
-            bag.append(0)
-
-    output_row=out_empty[:]
-    output_row[labels.index(docs_y[x])] = 1
-    training.append(bag)
-    output.append(output_row)
+from nltk.chat.util import Chat, reflections
 
 
-training = np.array(training)
-output = np.array(output)
-tensorflow.reset_default_graph()
-net = tflearn.input_data(shape=[None, len(training[0])])
-net = tflearn.fully_connected(net,8)
-net = tflearn.fully_connected(net,8)
-net = tflearn.fully_connected(net, len(output[0]),activation='softmax')
-net = tflearn.regression(net)
+reflections_pt = {
+    'eu': 'você',
+    'eu sou': 'você é',
+    'eu era': 'você era',
+    'eu iria': 'você iria',
+    'eu irei': 'você irá',
+    'meu': 'seu',
+    'você': 'eu',
+    'você é': 'eu sou',
+    'você era': 'eu era',
+    'você iria': 'eu iria',
+    'você irá': 'eu irei',
+    'seu': 'meu'
+}
 
-model = tflearn.DNN(net)
-model.fit(training, output, n_epoch=1000,batch_size=8,show_metrics=True)
-moodel.save('model.tflearn')
+pares = [
+        [
+         r'oi|olá|opa',
+         ['olá!', 'como vai?', 'tudo bem?']
+        ],
+        [
+         r'(.*)Qual é o seu Nome?',
+         ['Meu nome é Urbe!']
+        ],
+        [
+         r'(.*)idade',
+         ['Sou um Robô filha da puta!']
+        ],
+        [
+         r'meu nome é(.*)',
+         ['E ai %1, como vc ta?']
+        ],
+        [
+         r'quit',
+         ['vlw Chefe!', 'Até!', 'Inté!']
+        ]
+]
+
+print('Olá sou o Bot!')
+chat = Chat(pares, reflections_pt)
+chat.converse()

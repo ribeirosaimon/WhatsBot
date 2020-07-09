@@ -21,11 +21,11 @@ def find_stock(stock):
 
     dict_stock = {'stock':stock,
         'date':td_stock[0],
-        'open':td_stock[1],
-        'high':td_stock[2],
-        'low':td_stock[3],
-        'close':td_stock[4],
-        'volume':td_stock[6],
+        'open':float(td_stock[1]),
+        'high':float(td_stock[2]),
+        'low':float(td_stock[3]),
+        'close':float(td_stock[4]),
+        'volume':float(td_stock[6]),
         'volume medio':vol_medio
     }
     json_stock = json.dumps(dict_stock)

@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 import json
 from principal_stocks import *
 
-
 def find_stock(stock):
     td_stock = []
     r = requests.get(f'https://finance.yahoo.com/quote/{stock}.SA/history?p={stock}.SA')
@@ -22,16 +21,15 @@ def find_stock(stock):
 
     dict_stock = {'stock':stock,
         'date':td_stock[0],
-        'open':td_stock[1],
-        'high':td_stock[2],
-        'low':td_stock[3],
-        'close':td_stock[4],
-        'volume':td_stock[6],
+        'open':float(td_stock[1]),
+        'high':float(td_stock[2]),
+        'low':float(td_stock[3]),
+        'close':float(td_stock[4]),
+        'volume':float(td_stock[6]),
         'volume medio':vol_medio
     }
     json_stock = json.dumps(dict_stock)
     return json_stock
-
 
 with open('stock.json','w') as arquivo:
     for x in principal_stocks:

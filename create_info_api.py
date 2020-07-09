@@ -16,16 +16,22 @@ def find_stock(stock):
     soup = soup.find('div',{'class':'card rounded text-main-green-dark'})
     soup = soup.find_all('strong',{'class':'value'})
     vol_medio = soup[2].text.replace('.','').replace(',','.')
-    vol_medio = format((float(vol_medio)/7),'.2f')
-    vol_medio = float(vol_medio)
-
+    if vol_medio == '-':
+        vol_medio = 0
+    else:
+        vol_medio = format((float(vol_medio)/7),'.2f')
+        vol_medio = float(vol_medio)
+    if td_stock[6] == '-':
+        td_stock[6] = 0
+    else:
+        td_stock[6] = format(float(td_stock[2]),'.2f')
     dict_stock = {'stock':stock,
         'date':td_stock[0],
         'open':float(td_stock[1]),
         'high':float(td_stock[2]),
         'low':float(td_stock[3]),
         'close':float(td_stock[4]),
-        'volume':float(td_stock[6]),
+        'volume':td_stock[6],
         'volume medio':vol_medio
     }
     json_stock = json.dumps(dict_stock)
@@ -36,6 +42,5 @@ with open('stock.json','w') as arquivo:
         try:
             json_stock = find_stock(x)
             arquivo.write(json_stock + '\n')
-            stock_erros.append(x)
-        except:
+        except Exception as e:
             pass

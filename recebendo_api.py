@@ -21,8 +21,9 @@ def get_api(stock):
     api = 'https://secure-wildwood-34847.herokuapp.com/stock'
     resposta = requests.request('GET', api + f'/{stock}')
     acao = resposta.json()
-    avg_vol = acao[f'{stock}']['avg_vol']
+    adj_close = acao[f'{stock}']['adj_close']
     vol = acao[f'{stock}']['vol']
+    high = acao[f'{stock}']['high']
     print(avg_vol)
 if __name__ == '__main__':
     get_api('movi3')

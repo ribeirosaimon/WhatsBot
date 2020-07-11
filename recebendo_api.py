@@ -8,12 +8,21 @@ import urllib.parse
 
 
 def simular_site(acao):
-    with
+    with open('stock.json','w') as arquivo:
+        for x in principal_stocks:
+            try:
+                json_stock = find_stock(x)
+                arquivo.write(json_stock + '\n')
+                print(x)
+            except Exception as e:
+                pass
 
 def get_api(stock):
     api = 'https://secure-wildwood-34847.herokuapp.com/stock'
     resposta = requests.request('GET', api + f'/{stock}')
     acao = resposta.json()
-    print(acao[f'{stock}']['close'])
-
-get_api('movi3')
+    avg_vol = acao[f'{stock}']['avg_vol']
+    vol = acao[f'{stock}']['vol']
+    print(avg_vol)
+if __name__ == '__main__':
+    get_api('movi3')

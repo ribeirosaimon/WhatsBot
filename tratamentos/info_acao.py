@@ -1,4 +1,4 @@
-from tratamento_acao import get_api
+from tratamentos.tratamento_acao import get_api
 from datetime import datetime
 import time
 
@@ -31,9 +31,10 @@ def verifica_acao(watch_list):
         dados_tratamento = get_api(stock)
         max_diaria = maxima_do_dia(*dados_tratamento)
         min_diaria = minima_do_dia(*dados_tratamento)
-        volume(*dados_tratamento)
-
-
-
-
-verifica_acao(['movi3'])
+        print(f'Verifiquei a ação {stock}')
+        if max_diaria != '':
+            print(max_diaria)
+            return max_diaria
+        if min_diaria != '':
+            print(min_diaria)
+            return min_diaria

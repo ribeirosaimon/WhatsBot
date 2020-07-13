@@ -3,7 +3,7 @@ from datetime import datetime
 from tratamentos.info_acao import verifica_acao
 from twilioBotWhat import mensagem_retorno
 
-watch_list = ['movi3','shul4','itsa4','prio3','wege3']
+watch_list = ['movi3','shul4','mypk3','mglu3','tcsa3','jslg3']
 
 if __name__ == '__main__':
     try:

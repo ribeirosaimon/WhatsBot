@@ -26,15 +26,24 @@ def volume(*dados):
     print(vol_medio_hora)
 
 
-def verifica_acao(watch_list):
-    for stock in watch_list:
-        dados_tratamento = get_api(stock)
-        max_diaria = maxima_do_dia(*dados_tratamento)
-        min_diaria = minima_do_dia(*dados_tratamento)
-        print(f'Verifiquei a ação {stock}')
+def verifica_acao(stock, contador):
+    dados_tratamento = get_api(stock)
+    max_diaria = maxima_do_dia(*dados_tratamento)
+    min_diaria = minima_do_dia(*dados_tratamento)
+    print(f'Verifiquei a ação {stock}')
+    if contador == 0:
         if max_diaria != '':
             print(max_diaria)
             return max_diaria
         if min_diaria != '':
             print(min_diaria)
             return min_diaria
+        if contador >= 5:
+            if max_diaria != '':
+                print(max_diaria)
+                return max_diaria
+            if min_diaria != '':
+                print(min_diaria)
+                return min_diaria
+    else:
+        return

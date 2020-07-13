@@ -1,11 +1,13 @@
 import json
 import requests
+import time
 
 
 def get_api(stock):
     stock = stock
     api = 'https://secure-wildwood-34847.herokuapp.com'
     resposta = requests.request('GET', api + f'/{stock}')
+    time.sleep(1)
     acao = resposta.json()
     dados_acao = acao[stock]
     nome_acao = stock

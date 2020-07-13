@@ -1,17 +1,22 @@
+from tratamento_acao import get_api
+from datetime import datetime
+import time
 
-def tratamento_acao(*dados):
-    
+def minima_ou_maxima(*dados):
+    max = False
     if dados[2] <= dados[1]:
-        mensagem = f'A Cotação de {dados[0]} está na máxima do dia! '
-        mensagem_valor = f'Está cotada nesse momento à {dados[1]}'
-        return f'{mensagem}, {mensagem_valor}'
+        max = True
+    if dados[3] >= dados[1]:
+        max = False
+    return [max, False]
+
+
+def verifica_acao(watch_list):
+    for stock in watch_list:
+        a = minima_ou_maxima(*get_api(stock))
+        print(a)
 
 
 
-    elif dados[3] >= dados[1]:
-        mensagem = f'A Cotação de {dados[0]} está na mínima do dia! '
-        mensagem_valor = f'Está cotada nesse momento à {dados[1]}'
-        return f'{mensagem}, {mensagem_valor}'
 
-    else:
-        return 'Tudo nos conformes'
+verifica_acao(['movi3', 'shul4'])

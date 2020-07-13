@@ -4,7 +4,7 @@ import requests
 
 def get_api(stock):
     stock = stock
-    api = 'https://secure-wildwood-34847.herokuapp.com/stock'
+    api = 'https://secure-wildwood-34847.herokuapp.com'
     resposta = requests.request('GET', api + f'/{stock}')
     acao = resposta.json()
     dados_acao = acao[stock]

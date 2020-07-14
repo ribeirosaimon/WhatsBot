@@ -3,7 +3,8 @@ from datetime import datetime
 from tratamentos.info_acao import verifica_acao
 from twilioBotWhat import mensagem_retorno
 
-watch_list = ['movi3','shul4','mypk3','mglu3','tcsa3','jslg3']
+watch_list = ['movi3','shul4','mypk3','mglu3','tcsa3','jslg3', 'prio3']
+numeros_cadastrados = ['554891784586','555596985884']
 
 if __name__ == '__main__':
     try:
@@ -15,7 +16,7 @@ if __name__ == '__main__':
                 time.sleep(5)
                 if retorno != None:
                     contador += 1
-                    mensagem_retorno(retorno)
+                    mensagem_retorno(retorno,*numeros_cadastrados)
             time.sleep(300)
         b = datetime.now()
         print(b - a, ' TEMPO DE EXECUÇÃO DO APP')

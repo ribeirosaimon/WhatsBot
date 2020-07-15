@@ -16,7 +16,7 @@ def minima_do_dia(*dados):
 
 def volume(*dados):
     hora_do_dia = datetime.now().strftime('%H')
-    horas_passadas = 7 - (17 - int(hora_do_dia))
+    horas_passadas = 7 - (18 - int(hora_do_dia))
     volume_medio_diario = dados[5]/ horas_passadas
     avg_vol = dados[4] / 7
     if volume_medio_diario > avg_vol:
@@ -24,17 +24,17 @@ def volume(*dados):
     return None
 
 
-def verifica_acao(stock, stop_loss=None, stop_gain=None):
+def verifica_acao(stock, stop_loss, stop_gain):
     retorno_max, retorno_min, retorno_volume, retorno_stop = None, None, None, None
     dados_tratamento = get_api(stock)
     max_diaria = maxima_do_dia(*dados_tratamento)
     min_diaria = minima_do_dia(*dados_tratamento)
     volume_diario = volume(*dados_tratamento)
     print(f'Verifiquei a ação {stock}')
-    if dados_tratamento <= isinstance(stops, float):
-        retorno_stop = f'Ação {dados_tratamento[0]}atingiu StopLoss de {stops}'
-    if dados_tratamento >= isinstance(stops, float):
-        retorno_stop = f'Ação {dados_tratamento[0]}atingiu StopGain de {stops}'
+    if dados_tratamento[1] <= stop_loss:
+        retorno_stop = f'Ação {dados_tratamento[0]}atingiu StopLoss de {stop_loss}'
+    if dados_tratamento[1] >= stop_gain:
+        retorno_stop = f'Ação {dados_tratamento[0]}atingiu StopGain de {stop_gain}'
     if volume_diario != None:
         retorno_volume = volume_diario
     if max_diaria != None:

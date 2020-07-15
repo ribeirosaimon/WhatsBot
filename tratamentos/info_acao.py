@@ -43,4 +43,4 @@ def verifica_acao(stock, stop_loss=None, stop_gain=None):
     if min_diaria != None:
         print(min_diaria)
         retorno_min = min_diaria
-    return [retorno_volume, retorno_min, retorno_max]
+    return [retorno_volume, retorno_min, retorno_max, retorno_stop]

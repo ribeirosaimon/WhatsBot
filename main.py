@@ -16,7 +16,7 @@ if __name__ == '__main__':
             while 10 <= hora_do_dia <= 17:
                 for acao in watch_list:
                     try:
-                        retorno = verifica_acao(acao[0],acao[1],acao[2])
+                        retorno = verifica_acao(acao[0],acao[1],acao[2],acao[3])
                         time.sleep(5)
                         for mensagem in retorno:
                             if mensagem != None:

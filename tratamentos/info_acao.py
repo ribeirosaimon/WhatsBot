@@ -3,47 +3,44 @@ from datetime import datetime
 import time
 
 def maxima_do_dia(*dados):
-    max = ''
+    max = None
     if dados[2] <= dados[1]:
         max = f'Sua {dados[0]} Está na maxima do Dia!'
     return max
 
 def minima_do_dia(*dados):
-    min = ''
+    min = None
     if dados[3] >= dados[1]:
         min = f'Sua {dados[0]} Está na mínima do Dia!'
     return min
 
 def volume(*dados):
     hora_do_dia = datetime.now().strftime('%H')
-    horas_restantes = 17 - int(hora_do_dia)
-    horas_passadas = 7 - horas_restantes
-    vol_medio_hora = dados[4] / 7
-    vol_por_hora = dados[5]*horas_passadas
-    if vol_por_hora > vol_medio_hora:
-        print('volume acima da media', vol_por_hora, vol_medio_hora)
-
-    print(vol_medio_hora)
+    horas_passadas = 7 - (17 - int(hora_do_dia))
+    volume_medio_diario = dados[5]/ horas_passadas
+    avg_vol = dados[4] / 7
+    if volume_medio_diario > avg_vol:
+        return f'O volume de {dados[0]} está projetado acima da média'
+    return None
 
 
-def verifica_acao(stock, contador):
+def verifica_acao(stock, stop_loss=None, stop_gain=None):
+    retorno_max, retorno_min, retorno_volume, retorno_stop = None, None, None, None
     dados_tratamento = get_api(stock)
     max_diaria = maxima_do_dia(*dados_tratamento)
     min_diaria = minima_do_dia(*dados_tratamento)
+    volume_diario = volume(*dados_tratamento)
     print(f'Verifiquei a ação {stock}')
-    if contador == 0:
-        if max_diaria != '':
-            print(max_diaria)
-            return max_diaria
-        if min_diaria != '':
-            print(min_diaria)
-            return min_diaria
-        if contador >= 5:
-            if max_diaria != '':
-                print(max_diaria)
-                return max_diaria
-            if min_diaria != '':
-                print(min_diaria)
-                return min_diaria
-    else:
-        return
+    if dados_tratamento <= isinstance(stops, float):
+        retorno_stop = f'Ação {dados_tratamento[0]}atingiu StopLoss de {stops}'
+    if dados_tratamento >= isinstance(stops, float):
+        retorno_stop = f'Ação {dados_tratamento[0]}atingiu StopGain de {stops}'
+    if volume_diario != None:
+        retorno_volume = volume_diario
+    if max_diaria != None:
+        print(max_diaria)
+        retorno_max = max_diaria
+    if min_diaria != None:
+        print(min_diaria)
+        retorno_min = min_diaria
+    return [retorno_volume, retorno_min, retorno_max]

@@ -4,7 +4,7 @@ from tratamentos.info_acao import verifica_acao
 from twilioBotWhat import mensagem_retorno
 
 watch_list = [['HGTX3',15.00, 16.13, 15.64],['MGLU3',84.00, 87.78, 85.04],['EZTC3',40.00, 41.09, 40.99], ['GRND3', 7.30, 8.27, 8.06],]
-numeros_cadastrados = ['554891784586']
+numeros_cadastrados = ['0']
 mensagem_conferencia = []
 contador = 0
 tempo_conferencia = 900

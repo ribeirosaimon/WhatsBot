@@ -13,5 +13,3 @@ def mensagem_retorno(mensagem, *numeros):
                                           body=f'{mensagem}',
                                           to=f'whatsapp:+{numero}'
                                       )
-
-            print(message.sid)

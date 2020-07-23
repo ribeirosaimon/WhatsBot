@@ -5,8 +5,7 @@ import time
 
 def get_api(stock):
     stock = stock
-    #api = 'https://secure-wildwood-34847.herokuapp.com'
-    api = 'http://127.0.0.1:5000/stock/movi3'
+    api = 'https://secure-wildwood-34847.herokuapp.com'
     resposta = requests.request('GET', api + f'/{stock}')
     time.sleep(1)
     acao = resposta.json()

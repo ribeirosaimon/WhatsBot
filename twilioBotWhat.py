@@ -6,12 +6,12 @@ client = Client(account_sid, auth_token)
 
 
 def mensagem_retorno(mensagem, *numeros):
-    if mensagem != '':
-        for x in numeros:
+    if mensagem != None:
+        for numero in numeros:
             message = client.messages.create(
                                           from_='whatsapp:+14155238886',
                                           body=f'{mensagem}',
-                                          to=f'whatsapp:+{x}'
+                                          to=f'whatsapp:+{numero}'
                                       )
 
             print(message.sid)

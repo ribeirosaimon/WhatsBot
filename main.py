@@ -15,7 +15,7 @@ if __name__ == '__main__':
     try:
         while True:
             # Fazendo com que o App somente execute no horario da bolsa
-            while 0 <= hora_do_dia <= 17:
+            while 10 <= hora_do_dia <= 17:
                 #pra todas as ações da watch list
                 for acao in watch_list:
                     try:
@@ -32,7 +32,7 @@ if __name__ == '__main__':
                                     #contador de tempo vai zerar, caso a sms seja enviada
                                     contador = 0
                     except:
-                        pass
+                        mensagem_retorno('Deu tudo certo amigao'*numeros_cadastrados)
                 contador += tempo_conferencia
                 time.sleep(tempo_conferencia)
                 if contador >= 1800:

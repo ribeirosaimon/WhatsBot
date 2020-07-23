@@ -12,7 +12,7 @@ if __name__ == '__main__':
     hora_do_dia = int(datetime.now().strftime('%H'))
     try:
         while True:
-            while 10 <= hora_do_dia <= 17:
+            while 10 <= hora_do_dia <= 23:
                 for acao in watch_list:
                     try:
                         retorno = verifica_acao(acao[0],acao[1],acao[2])
@@ -24,8 +24,7 @@ if __name__ == '__main__':
                     except Exception as ex:
                         print(f'Nao consegui verificar a ação {acao[0]}', ex)
                 time.sleep(300)
-
-
+            print(hora_do_dia)
             hora_do_dia = int(datetime.now().strftime('%H'))
             time.sleep(900)
 

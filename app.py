@@ -32,7 +32,7 @@ if __name__ == '__main__':
                                     #contador de tempo vai zerar, caso a sms seja enviada
                                     contador = 0
                     except:
-                        mensagem_retorno('Deu tudo certo amigao'*numeros_cadastrados)
+                        print('ocorreu algum problema')
                 contador += tempo_conferencia
                 time.sleep(tempo_conferencia)
                 if contador >= 1800:

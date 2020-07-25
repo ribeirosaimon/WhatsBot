@@ -2,7 +2,7 @@ import time
 from datetime import datetime
 from tratamentos.info_acao import verifica_acao
 from mensagemtwilio.twilioBotWhat import mensagem_retorno
-from arquivo_confidencial import *
+from arquivo_confidencial import WATCH_LIST, NUMBERS
 
 
 

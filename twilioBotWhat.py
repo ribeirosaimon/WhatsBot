@@ -5,7 +5,7 @@ auth_token = '5850fed33bdd2c1fde8d09a61f7975f5'
 client = Client(account_sid, auth_token)
 
 
-def mensagem_retorno(mensagem, *numeros):
+def mensagem_retorno(mensagem, numeros):
     if mensagem != None:
         for numero in numeros:
             message = client.messages.create(

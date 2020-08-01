@@ -16,4 +16,6 @@ def get_api(stock):
     vol = acao[stock]['vol']
     high = acao[stock]['high']
     low = acao[stock]['low']
-    return [nome_acao, adj_close, high, low, avg_vol, vol]
+    mov_avg = acao[stock]['mov_avg']
+    rsi = acao[stock]['rsi']
+    return [nome_acao, adj_close, high, low, avg_vol, vol, mov_avg, rsi]
